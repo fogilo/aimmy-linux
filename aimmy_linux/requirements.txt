@@ -1,0 +1,13 @@
+# Aimmy Linux - Python Port
+# Core dependencies
+onnxruntime-gpu>=1.17.0     # GPU-accelerated ONNX inference (install onnxruntime for CPU-only)
+numpy>=1.24.0               # Array operations for inference
+Pillow>=10.0.0              # Image processing
+mss>=9.0.0                  # Fast cross-platform screen capture
+pynput>=1.7.6               # Global keyboard/mouse hooks
+screeninfo>=0.8.1           # Monitor information
+
+# UI dependencies (Phase 2)
+PyQt6>=6.6.0                # GUI framework
+
+# Utilities
