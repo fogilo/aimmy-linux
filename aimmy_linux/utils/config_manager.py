@@ -137,7 +137,7 @@ def ensure_directories():
         dir_path.mkdir(parents=True, exist_ok=True)
 
 
-def save_config(dictionary: Dict[str, Any], path: str = "bin/configs/Default.cfg",
+def save_config(dictionary: Optional[Dict[str, Any]] = None, path: str = "bin/configs/Default.cfg",
                 suggested_model: str = "", extra_strings: str = ""):
     """Save configuration dictionary to a JSON file.
 
@@ -149,7 +149,18 @@ def save_config(dictionary: Dict[str, Any], path: str = "bin/configs/Default.cfg
         if dir_name:
             os.makedirs(dir_name, exist_ok=True)
 
-        saved = dict(dictionary)
+        if dictionary is None:
+            # Combine all for saving
+            saved = {}
+            saved.update(config.binding_settings)
+            saved.update(config.slider_settings)
+            saved.update(config.toggle_state)
+            saved.update(config.minimize_state)
+            saved.update(config.dropdown_state)
+            saved.update(config.color_state)
+        else:
+            saved = dict(dictionary)
+            
         if suggested_model and "Suggested Model" in saved:
             saved["Suggested Model"] = suggested_model + ".onnx" + extra_strings
 
